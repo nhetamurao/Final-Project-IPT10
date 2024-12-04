@@ -1,0 +1,99 @@
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit Product</h4>
+            <form class="forms-sample" method="POST" action="/edit-product?id={{product_id}}">
+                <!-- Product Title -->
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="product_name" 
+                        name="product_name" 
+                        placeholder="Product Title" 
+                        value="{{product.name}}"
+                    >
+                </div>
+
+            <!-- Category Selection -->
+                <div class="form-group">
+                    <label for="category">Select Product Category</label>
+                    <select 
+                        class="form-control" 
+                        id="category" 
+                        name="category_id"
+                    >
+                        <option value="">Select Product Category</option>
+                        {{#categories}}
+                            <option 
+                                value="{{id}}" 
+                                {{#is_selected}}selected{{/is_selected}}
+                            >   
+                                {{name}}
+                            </option>
+                        {{/categories}}
+                    </select>
+                </div>
+
+                <!-- Photo Selection Dropdown -->
+                <div class="form-group">
+                    <label for="photo">Select Product Image</label>
+                    <select class="form-control" id="photo" name="media_id">
+                        <option value="">Select Product Image</option>
+                        {{#media_files}}
+                            <option value="{{id}}" {{#is_selected}}selected{{/is_selected}}> <!-- Change value to id -->
+                                {{file_name}}
+                            </option>
+                        {{/media_files}}
+                    </select>
+                </div>
+
+                <!-- Quantity and Pricing -->
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input 
+                                type="number" 
+                                class="form-control" 
+                                id="quantity" 
+                                name="quantity" 
+                                placeholder="Quantity" 
+                                value="{{product.quantity}}"
+                            >
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="buy_price">Buy Price</label>
+                            <input 
+                                type="number" 
+                                class="form-control" 
+                                id="buy_price" 
+                                name="buy_price" 
+                                placeholder="Buy Price" 
+                                value="{{product.buy_price}}"
+                            >
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="sale_price">Sale Price</label>
+                            <input 
+                                type="number" 
+                                class="form-control" 
+                                id="sale_price" 
+                                name="sale_price" 
+                                placeholder="Sale Price" 
+                                value="{{product.sale_price}}"
+                            >
+                        </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary me-2">Update Product</button>
+                <a href="/manage-products" class="btn btn-light">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>

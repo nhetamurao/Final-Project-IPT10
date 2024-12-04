@@ -1,0 +1,202 @@
+<!-- Dashboard Reports
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="statistics-details d-flex align-items-center justify-content-between">
+            <div>
+                <p class="statistics-title">Today Sales</p>
+                <h3 class="rate-percentage">#</h3>
+                <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>
+            </div>
+            <div>
+                <p class="statistics-title">Montly Sales</p>
+                <h3 class="rate-percentage">#</h3>
+                <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0.1%</span></p>
+            </div>
+            <div>
+                <p class="statistics-title">Total Categories</p>
+                <h3 class="rate-percentage">68.8</h3>
+                <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
+            </div>
+            <div class="d-none d-md-block">
+                <p class="statistics-title">Total Products</p>
+                <h3 class="rate-percentage">2m:35s</h3>
+                <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+<div class="row">
+    <!-- Market Overview Chart -->
+    <div class="col-lg-6 d-flex flex-column">
+        <div class="row flex-grow">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card card-rounded">
+                    <div class="card-body">
+                        <div class="d-sm-flex justify-content-between align-items-start">
+                            <div>
+                                <h4 class="card-title card-title-dash">Market Overview</h4>
+                                <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit</p>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle toggle-dark btn-lg mb-0 me-0"
+                                        type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"> This month </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                        <h6 class="dropdown-header">Options</h6>
+                                        <a class="dropdown-item" href="#">This Year</a>
+                                        <a class="dropdown-item" href="#">This Month</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-sm-flex align-items-center mt-1 justify-content-between">
+                            <div class="d-sm-flex align-items-center mt-4 justify-content-between">
+                                <h2 class="me-2 fw-bold">₱36,2531.00</h2>
+                                <h4 class="me-2">Php</h4>
+                            </div>
+                            <div class="me-3">
+                                <div id="marketingOverview-legend"></div>
+                            </div>
+                        </div>
+                        <div class="chartjs-bar-wrapper mt-3">
+                            <canvas id="marketingOverview"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doughnut Chart -->
+    <div class="col-lg-6 d-flex flex-column">
+        <div class="row flex-grow">
+            <div class="col-6 grid-margin stretch-card">
+                <div class="card card-rounded">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="card-title card-title-dash">Type By Amount</h4>
+                                </div>
+                                <div>
+                                    <canvas class="my-auto" id="doughnutChart"></canvas>
+                                </div>
+                                <div id="doughnutChart-legend" class="mt-5 text-center"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+        <div class="row">
+
+            <!-- Add New Category Form -->
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Highest Selling Products</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Total Sales</th>
+                                        <th>Total Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#highest_selling_products}}
+                                    <tr>
+                                        <td>{{product_name}}</td>
+                                        <td>{{total_sales}}</td>
+                                        <td>{{total_quantity}}</td>
+                                    </tr>
+                                    {{/highest_selling_products}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Display All Categories -->
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Latest Sales</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product Name</th>
+                                        <th>Date</th>
+                                        <th>Total Sale</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#latest_sales}}
+                                    <tr>
+                                        <td>{{sequence}}</td>
+                                        <td>{{product_name}}</td>
+                                        <td>{{date}}</td>
+                                        <td>{{total_sale}}</td>
+                                    </tr>
+                                    {{/latest_sales}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Display All Categories -->
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Recently Added Products</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Photo</th>
+                                    <th>Product Title</th>
+                                    <th>Category</th>
+                                    <th>Selling Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#recent_products}}
+                                <tr>
+                                    <td>{{sequence}}</td>
+                                    <td>
+                                        <!-- Displaying product image -->
+                                        <img src="/views/uploads/products/{{image_file}}" alt="{{product_name}}"
+                                            width="50" height="50">
+                                    </td>
+                                    <td>{{product_name}}</td>
+                                    <td>{{category_name}}</td> <!-- Display category name -->
+                                    <td>{{sale_price}}</td>
+                                </tr>
+                                {{/recent_products}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>

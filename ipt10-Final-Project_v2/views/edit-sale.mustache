@@ -1,0 +1,84 @@
+<div class="card">
+    <div class="card-body">
+        <div id="Add-New">
+            <h4 class="card-title">{{title}}</h4>
+            <div> 
+                <a href="/manage-sales/" class="btn btn-primary">Show All Sales</a> 
+            </div>
+        </div>
+        <div class="table-responsive">
+            <form method="POST" action="/edit-sale?id={{sale_id}}">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    name="product_name" 
+                                    value="{{product.name}}"
+                                    readonly>
+                            </td>
+                            <td>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    name="quantity" 
+                                    value="{{sale.qty}}">
+                            </td>
+                            <td>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    name="price" 
+                                    value="{{product.sale_price}}"
+                                    readonly>
+                            </td>
+                            <td>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    name="total" 
+                                    value="{{sale.price}}"
+                                    readonly>
+                            </td>
+                            <td>
+                                <input 
+                                    type="date" 
+                                    class="form-control datepicker" 
+                                    name="sale_date" 
+                                    value="{{sale.date}}">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button type="submit" class="btn btn-success mt-3">Update Sale</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const quantityInput = document.getElementById('quantity');
+    const priceInput = document.getElementById('price');
+    const totalInput = document.getElementById('total');
+
+    function updateTotal() {
+        const quantity = parseFloat(quantityInput.value) || 0;
+        const price = parseFloat(priceInput.value) || 0;
+        totalInput.value = (quantity * price).toFixed(2); // Calculate total
+    }
+
+    quantityInput.addEventListener('input', updateTotal);
+    priceInput.addEventListener('input', updateTotal);
+</script>

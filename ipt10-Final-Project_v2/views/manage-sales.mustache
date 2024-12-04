@@ -1,0 +1,52 @@
+<!-- Display Session Message -->
+{{#message}}
+<div class="col-12">
+    <div class="alert alert-{{msg_type}} alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+{{/message}}
+
+<p>{{message}}</p>
+<p>{{msg_type}}</p>
+
+<div class="card">  
+    <div class="card-body">
+        <div id="Add-New">
+        <h4 class="card-title">All Sales</h4>
+            <div> <a href="/add-sales/" class="btn btn-primary">Add New Sale</a> </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#sales}}
+                    <tr>
+                        <td>{{sequence}}</td>
+                        <td>{{product_name}}</td>
+                        <td>{{quantity}}</td>
+                        <td>{{total}}</td>
+                        <td>{{sale_date}}</td>
+                        <td>
+                            <a href="/edit-sale?id={{sale_id}}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="/delete-sale?id={{sale_id}}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    {{/sales}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

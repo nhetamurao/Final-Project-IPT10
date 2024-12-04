@@ -1,0 +1,104 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">{{title}}</h4>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#products}} <!-- Loop through all products -->
+                    <tr>
+                        <form method="POST" action="/add-sales">
+                            <!-- Product Name (readonly) -->
+                            <td>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    name="product_name[{{product_id}}]" 
+                                    value="{{product_name}}" 
+                                    readonly>
+                            </td>
+
+                            <!-- Quantity -->
+                            <td>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="quantity-{{product_id}}" 
+                                    name="quantity[{{product_id}}]" 
+                                    placeholder="Enter quantity">
+                            </td>
+
+                            <!-- Price (readonly) -->
+                            <td>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="price-{{product_id}}" 
+                                    name="price[{{product_id}}]" 
+                                    value="{{sale_price}}" 
+                                    readonly>
+                            </td>
+
+                            <!-- Total (calculated, readonly) -->
+                            <td>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="total-{{product_id}}" 
+                                    name="total[{{product_id}}]" 
+                                    value="0" 
+                                    readonly>
+                            </td>
+
+                            <!-- Sale Date -->
+                            <td>
+                                <input 
+                                    type="date" 
+                                    class="form-control" 
+                                    name="sale_date[{{product_id}}]" 
+                                    required>
+                            </td>
+
+                            <!-- Hidden Product ID Field -->
+                            <td>
+                                <input type="hidden" name="product_id[{{product_id}}]" value="{{product_id}}"> <!-- Pass product ID -->
+                            </td>
+
+                            <!-- Add Sale Button -->
+                            <td>
+                                <button 
+                                    type="submit" 
+                                    class="btn btn-primary">
+                                    Add Sale
+                                </button>
+                            </td>
+                        </form>
+                    </tr>
+                    {{/products}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to Update Totals -->
+<script>
+    // Update total price dynamically when quantity is changed
+    document.querySelectorAll('input[id^="quantity-"]').forEach(input => {
+        input.addEventListener('input', function () {
+            const id = this.id.split('-')[1]; // Extract the product ID
+            const quantity = parseFloat(this.value) || 0; // Default to 0 if invalid
+            const price = parseFloat(document.getElementById(`price-${id}`).value) || 0; // Default to 0 if invalid
+            document.getElementById(`total-${id}`).value = (quantity * price).toFixed(2); // Calculate and set total
+        });
+    });
+</script>

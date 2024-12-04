@@ -1,0 +1,61 @@
+<!-- Display Session Message -->
+{{#message}}
+<div class="col-12">
+    <div class="alert alert-{{msg_type}} alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+{{/message}}
+
+<div class="card">
+    <div class="card-body">
+        <div id="Add-New">
+            <h4 class="card-title">Products</h4>
+            <div><a href="/add-product/" class="btn btn-primary">Add New</a></div>
+        </div>
+  
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Photo</th>
+                        <th>Product Title</th>
+                        <th>Categories</th>
+                        <th>In-Stock</th>
+                        <th>Buying Price</th>
+                        <th>Selling Price</th>
+                        <th>Product Added</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#products}}
+                        <tr>
+                            <td>{{product_id}}</td>
+                            <td>
+                                {{#media_file_name}}
+                                    <img src="/views/uploads/products/{{media_file_name}}" alt="Product Photo" width="50">
+                                {{/media_file_name}}
+                                {{^media_file_name}}
+                                    <img src="/views/uploads/products/default-image.jpg" alt="Default Product Photo" width="50">
+                                {{/media_file_name}}
+                            </td>
+                            <td>{{product_name}}</td>
+                            <td>{{category_name}}</td>
+                            <td>{{quantity}}</td>
+                            <td>{{buy_price}}</td>
+                            <td>{{sale_price}}</td>
+                            <td>{{product_date}}</td>
+                            <td>
+                                <a href="/edit-product?id={{product_id}}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="/delete-product?id={{product_id}}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    {{/products}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

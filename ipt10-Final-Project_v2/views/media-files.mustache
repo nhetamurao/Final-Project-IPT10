@@ -1,0 +1,66 @@
+<!-- Display Session Message -->
+{{#message}}
+<div class="col-12">
+    <div class="alert alert-{{msg_type}} alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+{{/message}}
+
+<div class="card">  
+    <div class="card-body">
+        <div id="Add-New">
+            <h4 class="card-title">All Photos</h4>
+            <form action="/upload-photo" method="POST" enctype="multipart/form-data" class="d-flex gap-2">
+                <div>
+                    <label for="upload-photo" class="btn btn-primary">Select File</label>
+                    <input 
+                        type="file" 
+                        id="upload-photo" 
+                        name="photo" 
+                        style="display: none;" 
+                        accept="image/*"
+                    >
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Photo</th>
+                        <th>Photo Name</th>
+                        <th>Photo Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#media_files}}    
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>
+                            <img 
+                                src="/views/uploads/products/{{file_name}}" 
+                                alt="{{file_name}}" 
+                                id="images"
+                            >
+                        </td>
+                        <td>{{file_name}}</td>
+                        <td>{{file_type}}</td>
+                        <td>
+                            <a href="/delete-file?id={{id}}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    {{/media_files}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
