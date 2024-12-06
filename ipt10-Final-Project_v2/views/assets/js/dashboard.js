@@ -360,65 +360,65 @@
       bar.animate(.34); // Number from 0.0 to 1.0
     }
 
-    if ($("#doughnutChart").length) { 
-    // Assuming total_sales, total_products, and monthly_sales are defined elsewhere
-    // Example: Fetch the data dynamically from your server or set as variables
-    var total_sales = 5000; // Example value
-    var total_products = 150; // Example value
-    var monthly_sales = [300, 400, 500, 450, 600, 700]; // Example array of monthly sales data
+//     if ($("#doughnutChart").length) { 
+//     // Assuming total_sales, total_products, and monthly_sales are defined elsewhere
+//     // Example: Fetch the data dynamically from your server or set as variables
+//     var total_sales = 5000; // Example value
+//     var total_products = 150; // Example value
+//     var monthly_sales = [300, 400, 500, 450, 600, 700]; // Example array of monthly sales data
 
-    const doughnutChartCanvas = document.getElementById('doughnutChart');
-    new Chart(doughnutChartCanvas, {
-        type: 'doughnut',
-        data: {
-            labels: ['Total Sales', 'Total Products', 'Monthly Sales'],
-            datasets: [{
-                data: [total_sales, total_products, monthly_sales.reduce((a, b) => a + b, 0)], // Summing the monthly sales
-                backgroundColor: [
-                    "#1F3BB3",
-                    "#FDD0C7",
-                    "#52CDFF"
-                ],
-                borderColor: [
-                    "#1F3BB3",
-                    "#FDD0C7",
-                    "#52CDFF"
-                ]
-            }]
-        },
-        options: {
-            cutout: 90,
-            animationEasing: "easeOutBounce",
-            animateRotate: true,
-            animateScale: false,
-            responsive: true,
-            maintainAspectRatio: true,
-            showScale: true,
-            legend: false,
-            plugins: {
-                legend: {
-                    display: false,
-                }
-            }
-        },
-        plugins: [{
-            afterDatasetUpdate: function (chart, args, options) {
-                const chartId = chart.canvas.id;
-                const legendId = `${chartId}-legend`;
-                const ul = document.createElement('ul');
-                for (let i = 0; i < chart.data.datasets[0].data.length; i++) {
-                    ul.innerHTML += `
-                        <li>
-                            <span style="background-color: ${chart.data.datasets[0].backgroundColor[i]}"></span>
-                            ${chart.data.labels[i]}
-                        </li>
-                    `;
-                }
-                return document.getElementById(legendId).appendChild(ul);
-            }
-        }]
-    });
-}
+//     const doughnutChartCanvas = document.getElementById('doughnutChart');
+//     new Chart(doughnutChartCanvas, {
+//         type: 'doughnut',
+//         data: {
+//             labels: ['Total Sales', 'Total Products', 'Monthly Sales'],
+//             datasets: [{
+//                 data: [total_sales, total_products, monthly_sales.reduce((a, b) => a + b, 0)], // Summing the monthly sales
+//                 backgroundColor: [
+//                     "#1F3BB3",
+//                     "#FDD0C7",
+//                     "#52CDFF"
+//                 ],
+//                 borderColor: [
+//                     "#1F3BB3",
+//                     "#FDD0C7",
+//                     "#52CDFF"
+//                 ]
+//             }]
+//         },
+//         options: {
+//             cutout: 90,
+//             animationEasing: "easeOutBounce",
+//             animateRotate: true,
+//             animateScale: false,
+//             responsive: true,
+//             maintainAspectRatio: true,
+//             showScale: true,
+//             legend: false,
+//             plugins: {
+//                 legend: {
+//                     display: false,
+//                 }
+//             }
+//         },
+//         plugins: [{
+//             afterDatasetUpdate: function (chart, args, options) {
+//                 const chartId = chart.canvas.id;
+//                 const legendId = `${chartId}-legend`;
+//                 const ul = document.createElement('ul');
+//                 for (let i = 0; i < chart.data.datasets[0].data.length; i++) {
+//                     ul.innerHTML += `
+//                         <li>
+//                             <span style="background-color: ${chart.data.datasets[0].backgroundColor[i]}"></span>
+//                             ${chart.data.labels[i]}
+//                         </li>
+//                     `;
+//                 }
+//                 return document.getElementById(legendId).appendChild(ul);
+//             }
+//         }]
+//     });
+// }
 
     if ($("#leaveReport").length) { 
       const leaveReportCanvas = document.getElementById('leaveReport');
